@@ -26,7 +26,10 @@ if (!supabaseUrl || !supabaseAnonKey) {
     process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    realtime: { enabled: false },
+    global: { headers: { 'x-no-realtime': 'true' } }
+});
 
 // Routes
 
