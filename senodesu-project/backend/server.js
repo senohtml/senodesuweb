@@ -20,6 +20,12 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('ERROR: SUPABASE_URL and SUPABASE_ANON_KEY environment variables are required.');
+    process.exit(1);
+}
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Routes
@@ -117,7 +123,7 @@ app.post('/api/auth/signup', async (req, res) => {
     try {
         const { email, password } = req.body;
         
-        const { data, error } = await supabase.auth.signUpWithPassword({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password
         });
