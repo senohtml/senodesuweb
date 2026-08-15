@@ -11,6 +11,9 @@
   "keywords": ["senodesu", "education", "japan"],
   "author": "Senodesu",
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
