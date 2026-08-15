@@ -11,6 +11,10 @@ RUN npm install
 # Copy backend application
 COPY senodesu-project/backend/ .
 
+# Copy frontend and admin
+COPY senodesu-project/frontend/ ../frontend/
+COPY senodesu-project/admin/ ../admin/
+
 # Expose port
 EXPOSE 5000
 

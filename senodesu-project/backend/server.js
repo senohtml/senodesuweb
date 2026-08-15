@@ -191,6 +191,11 @@ app.get('/health', (req, res) => {
     res.json({ status: 'Server is running' });
 });
 
+// Serve frontend for all other routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
