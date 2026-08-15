@@ -1,0 +1,25 @@
+{
+  "name": "senodesu-backend",
+  "version": "1.0.0",
+  "description": "Senodesu backend API with Supabase",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["senodesu", "education", "japan"],
+  "author": "Senodesu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "@supabase/supabase-js": "^2.38.4",
+    "body-parser": "^1.20.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Senodesu</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>SENODESU</h2>
+                <p>Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#resources" class="nav-item active" data-section="resources">
+                    <span class="nav-icon">📦</span>
+                    <span>Resources</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+                <a href="#analytics" class="nav-item" data-section="analytics">
+                    <span class="nav-icon">📊</span>
+                    <span>Analytics</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Dashboard</h1>
+                <div class="header-info">
+                    <span id="userEmail"></span>
+                </div>
+            </header>
+
+            <!-- Resources Section -->
+            <section id="resources" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Resources Management</h2>
+                    <button id="addResourceBtn" class="btn btn-primary">+ Add Resource</button>
+                </div>
+
+                <!-- Add/Edit Resource Form -->
+                <div id="resourceForm" class="form-container" style="display: none;">
+                    <div class="form-box">
+                        <h3 id="formTitle">Add New Resource</h3>
+                        
+                        <form id="addResourceForm">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="language">Bahasa Jepang</option>
+                                    <option value="work">Bekerja di Jepang</option>
+                                    <option value="culture">Budaya & Masyarakat</option>
+                                    <option value="travel">Panduan Perjalanan</option>
+                                    <option value="tech">Dunia Tech</option>
+                                    <option value="dev">Full-Stack Dev</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input type="url" id="link" name="link" placeholder="https://...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="driveLink">Google Drive Link</label>
+                                <input type="url" id="driveLink" name="drive_link" placeholder="https://drive.google.com/...">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Resources Table -->
+                <div class="table-container">
+                    <table id="resourcesTable" class="resources-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="loading">
+                                <td colspan="4">Loading resources...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <h3>Site Title</h3>
+                        <input type="text" id="siteTitle" value="Senodesu">
+                        <button class="btn btn-small">Save</button>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3>Site Description</h3>
+                        <textarea id="siteDescription">Learning Japanese & Tech</textarea>
+                        <button class="btn btn-small">Save</button>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3>Contact Email</h3>
+                        <input type="email" id="contactEmail" value="senohtml@gmail.com">
+                        <button class="btn btn-small">Save</button>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3>TikTok Username</h3>
+                        <input type="text" id="tiktokUsername" value="senodesuu">
+                        <button class="btn btn-small">Save</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Analytics</h2>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-value" id="totalResources">0</div>
+                        <div class="analytics-label">Total Resources</div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="analytics-value" id="totalCategories">6</div>
+                        <div class="analytics-label">Categories</div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="analytics-value" id="pageViews">0</div>
+                        <div class="analytics-label">Page Views</div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <div class="analytics-value" id="activeUsers">0</div>
+                        <div class="analytics-label">Active Users</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div id="confirmDialog" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p id="confirmMessage">Are you sure you want to delete this resource?</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="confirmYes">Yes, Delete</button>
+                <button class="btn btn-secondary" id="confirmNo">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
